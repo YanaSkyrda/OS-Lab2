@@ -13,21 +13,21 @@ public class DekkersLockTest {
 
     @Test
     void dekkersLockTest() throws InterruptedException, ExecutionException {
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        ExecutorService executorService = Executors.newFixedThreadPool(20);
         DekkersLock dekkersLock = new DekkersLock();
-        Future<Integer> sum1Future = executorService.submit(new CallableSumWithLock(dekkersLock));
-        Future<Integer> sum2Future = executorService.submit(new CallableSumWithLock(dekkersLock));
-        int sum1 = sum1Future.get();
-        int sum2 = sum2Future.get();
+        Future<Long> sum1Future = executorService.submit(new CallableSumWithLock(dekkersLock));
+        Future<Long> sum2Future = executorService.submit(new CallableSumWithLock(dekkersLock));
+        long sum1 = sum1Future.get();
+        long sum2 = sum2Future.get();
 
         if (sum1 > sum2) {
-            int temp = sum1;
+            long temp = sum1;
             sum1 = sum2;
             sum2 = temp;
         }
 
-        assertEquals(sum1, 499500);
-        assertEquals(sum2, 999000);
+        assertEquals(4999950000L, sum1);
+        assertEquals(9999900000L, sum2);
     }
 
     @Test

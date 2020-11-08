@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.Callable;
 
 @Slf4j
-public class CallableSumWithLock implements Callable<Integer> {
+public class CallableSumWithLock implements Callable<Long> {
 
     private AbstractFixnumLock lock;
 
@@ -16,12 +16,12 @@ public class CallableSumWithLock implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() {
+    public Long call() {
         lock.register();
         lock.lock();
         log.info("Locked thread: " + Thread.currentThread().getName());
-        int counter = 0;
-        for (int i = 0; i < 1000; i++) {
+        long counter = 0;
+        for (int i = 0; i < 100000; i++) {
             counter += i * multiplier;
         }
         multiplier++;
