@@ -1,5 +1,7 @@
 package com.dreamteam.os.lab2;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.Callable;
@@ -8,9 +10,8 @@ import java.util.concurrent.Callable;
 public class CallableSumWithLock implements Callable<Long> {
 
     private AbstractFixnumLock lock;
-
+    @Setter
     private static int multiplier = 1;
-
     public CallableSumWithLock(AbstractFixnumLock lock) {
         this.lock = lock;
     }

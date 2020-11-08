@@ -15,6 +15,7 @@ public class DekkersLockTest {
     void dekkersLockTest() throws InterruptedException, ExecutionException {
         ExecutorService executorService = Executors.newFixedThreadPool(20);
         DekkersLock dekkersLock = new DekkersLock();
+        CallableSumWithLock.setMultiplier( 1 );
         Future<Long> sum1Future = executorService.submit(new CallableSumWithLock(dekkersLock));
         Future<Long> sum2Future = executorService.submit(new CallableSumWithLock(dekkersLock));
         long sum1 = sum1Future.get();
