@@ -17,16 +17,6 @@ class AbstractFixnumLockTest {
         }
     }
 
-    public class Test2Thread extends Thread {
-        public void run() {
-            lock.register();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {}
-            lock.unregister();
-        }
-    }
-
     @Test
     void limitShouldBeReached() throws InterruptedException {
         for (int i = 0; i < 11; i++) {
