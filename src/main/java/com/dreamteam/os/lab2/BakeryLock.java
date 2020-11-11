@@ -28,7 +28,6 @@ public class BakeryLock extends AbstractFixnumLock {
     @Override
     public void lock()
     {
-        System.out.println("TEST TEST TEST 12131232131331   "+ getId());
         entering[getId()]=true;
         int max = 0;
         for (int i = 0; i < maxThreads; i++) {
